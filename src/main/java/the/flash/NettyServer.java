@@ -16,6 +16,7 @@ public class NettyServer {
         NioEventLoopGroup boosGroup = new NioEventLoopGroup();
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
 
+        // 创建启动类
         final ServerBootstrap serverBootstrap = new ServerBootstrap();
         final AttributeKey<Object> clientKey = AttributeKey.newInstance("clientKey");
         serverBootstrap
