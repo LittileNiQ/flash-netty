@@ -41,7 +41,7 @@ public class NettyClient {
                 });
 
         // 4.建立连接
-        connect(bootstrap, "juejin.im", 80, MAX_RETRY);
+        connect(bootstrap, "juejin.im", 8011, MAX_RETRY);
     }
 
     private static void connect(Bootstrap bootstrap, String host, int port, int retry) {
@@ -55,6 +55,7 @@ public class NettyClient {
                 int order = (MAX_RETRY - retry) + 1;
                 // 本次重连的间隔
                 int delay = 1 << order;
+                System.out.println(delay);
                 System.err.println(new Date() + ": 连接失败，第" + order + "次重连……");
                 bootstrap.config().group().schedule(() -> connect(bootstrap, host, port, retry - 1), delay, TimeUnit
                         .SECONDS);
