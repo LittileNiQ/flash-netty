@@ -14,14 +14,18 @@ import java.util.Date;
  */
 public class FirstServerHandler extends ChannelInboundHandlerAdapter {
 
+    // 这里的 msg 参数指的就是 Netty 里面数据读写的载体
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+
+        // 收数据逻辑
         ByteBuf byteBuf = (ByteBuf) msg;
 
         System.out.println(new Date() + ": 服务端读到数据 -> " + byteBuf.toString(Charset.forName("utf-8")));
 
         // 回复数据到客户端
         System.out.println(new Date() + ": 服务端写出数据");
+        // 先创建一个ByteBuf
         ByteBuf out = getByteBuf(ctx);
         ctx.channel().writeAndFlush(out);
     }

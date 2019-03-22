@@ -32,6 +32,9 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        // ch.pipeline() 返回的是和这条连接相关的逻辑处理链，采用了责任链模式.
+                        // 然后再调用 addLast() 方法 添加一个逻辑处理器，这个逻辑处理器为的就是在客户端建立连接成功之后，
+                        // 向服务端写数据，下面是这个逻辑处理器相关的代码.
                         ch.pipeline().addLast(new FirstClientHandler());
                     }
                 });
