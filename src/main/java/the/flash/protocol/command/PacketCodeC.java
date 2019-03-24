@@ -10,8 +10,14 @@ import java.util.Map;
 
 import static the.flash.protocol.command.Command.LOGIN_REQUEST;
 
+/**
+ * 序列化是把内容变成计算机可传输的资源，而编码则是让程序认识这份资源。
+ */
+
+
 public class PacketCodeC {
 
+    // 魔数
     private static final int MAGIC_NUMBER = 0x12345678;
     private static final Map<Byte, Class<? extends Packet>> packetTypeMap;
     private static final Map<Byte, Serializer> serializerMap;
